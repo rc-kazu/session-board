@@ -1,0 +1,38 @@
+{
+  "_comment": [
+    "session-board の追跡対象。~/.config/session-board/targets.json にコピーして書き換える (session-board init でコピーできる)。",
+    "_ で始まる項目は注記で、読み飛ばされる。各項目の説明は README の「設定」を参照。",
+    "repos: 追跡するリポジトリ。キーは GitHub のリポジトリ名。owner は GitHub の組織名かユーザー名、path はローカルのクローン。",
+    "projects: ボードの列 (書いた順に左から並ぶ)。rules で (リポジトリ, パス) をこの列と種別 (app / infra-tf / infra-k8s) に振り分ける。",
+    "どの列にも当たらない案件は other_label の列 (既定は「その他」) に入る。",
+    "path_aliases (任意): 作業ディレクトリを移したとき、Claude Code の記録に残る古いパスを新しいパスとして読む。{\"古い場所\": \"新しい場所\"}。"
+  ],
+  "github_owner": "example-org",
+  "repos": {
+    "my-app": {"owner": "example-org", "path": "~/src/my-app"},
+    "my-infra": {"owner": "example-org", "path": "~/src/my-infra", "default_kind": "infra-tf"},
+    "tools": {"path": "~/src/tools"}
+  },
+  "projects": [
+    {
+      "name": "my-app",
+      "keywords": ["my-app"],
+      "cloud": "my-gcp-project",
+      "rules": [
+        {"repo": "my-app", "kind": "app", "paths": ["services/api", "services/web"]},
+        {"repo": "my-app", "kind": "infra-k8s", "paths": ["deploy/k8s/my-app"]},
+        {"repo": "my-infra", "kind": "infra-tf", "paths": ["envs/*/my-app", "modules/**my-app*"]}
+      ]
+    },
+    {
+      "name": "tools",
+      "color": "#2f9e44",
+      "layout": "normal",
+      "rules": [
+        {"repo": "tools", "kind": "app", "paths": [""]}
+      ]
+    }
+  ],
+  "other_label": "その他",
+  "path_aliases": {"~/old/src": "~/src"}
+}

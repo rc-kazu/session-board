@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>session-board</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div id="app" class="app app--full">
+<header class="hdr">
+  <div class="hdr__brand">session-board</div>
+  <div class="hdr__search" data-icon="search">
+    <label class="sr-only" for="search">検索</label>
+    <input id="search" class="search" type="search" placeholder="検索" autocomplete="off" aria-keyshortcuts="/"
+           title="タイトル / PR / ブランチ / メモ / 依頼文 / タブ名から探します。空白で区切ると、すべての語を含む作業を探します">
+    <kbd aria-hidden="true">/</kbd>
+  </div>
+  <div class="hdr__filter">
+    <button id="filter-btn" class="btn" type="button" data-icon="filter" aria-haspopup="dialog" aria-expanded="false"
+            aria-controls="filter-pop" aria-keyshortcuts="f">絞り込み<span id="filter-badge" class="count-badge" hidden></span></button>
+    <div id="filter-pop" class="popover" role="dialog" aria-label="絞り込み" hidden></div>
+  </div>
+  <button id="mine-switch" class="switch" type="button" role="switch" aria-checked="false" aria-keyshortcuts="m"><span class="switch__track"></span>自分の対応待ちだけ</button>
+  <span id="filter-notes" class="hdr__notes"></span>
+  <div class="hdr__spacer"></div>
+  <div id="status" class="hdr__status" aria-live="polite"></div>
+  <div class="hdr__group">
+    <button id="hidden-btn" class="btn btn--ghost" type="button" aria-pressed="false">非表示 (0)</button>
+    <button id="ticket-new" class="btn" type="button" aria-haspopup="dialog" title="名前と表示する列を決めて、空のチケットを作成します。あとから会話を入れられます。">チケットを作成</button>
+    <button id="keys-open" class="btn btn--ghost" type="button" aria-haspopup="dialog" aria-keyshortcuts="?" title="キーボード操作の一覧を表示します (?)">キーボード操作</button>
+    <button id="refresh" class="btn" type="button" data-icon="refresh" aria-keyshortcuts="r">更新</button>
+    <button id="report-open" class="btn btn--primary" type="button" aria-haspopup="dialog" aria-keyshortcuts="w">作業報告</button>
+  </div>
+</header>
+<div id="banners" class="banners" hidden></div>
+<div id="pickbar" class="pickbar" role="status" hidden></div>
+<section id="mine" class="mine" aria-labelledby="mine-h" hidden></section>
+<div id="ptabs" class="ptabs" role="tablist" aria-label="プロジェクト" hidden></div>
+<main id="board" class="board" aria-label="作業の一覧"></main>
+<aside id="drawer" class="drawer" aria-labelledby="drawer-title" hidden></aside>
+<div id="toasts" class="toasts" aria-live="polite"></div>
+<div id="tooltip" class="tooltip" aria-hidden="true" hidden></div>
+</div>
+<script src="/static/app.js"></script>
+</body>
+</html>

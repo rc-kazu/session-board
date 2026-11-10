@@ -1,0 +1,9 @@
+data/
+dist/
+__pycache__/
+*.pyc
+.DS_Store
+
+# 実際の設定はリポジトリに置かない (~/.config/session-board/ に置く)。例は config/*.example.json
+config/targets.json
+config/settings.json
